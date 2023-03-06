@@ -37,8 +37,6 @@ if os.path.isfile(username+'.csv'):
 
     # open the file in the write mode
     f = open(username+'.csv', 'w', encoding='UTF8', newline='')
-    # create the csv writer
-    writer = csv.writer(f)
 
     print("Followers losts", [
           x for x in followers if x not in previous_followers])
@@ -46,6 +44,8 @@ if os.path.isfile(username+'.csv'):
           x for x in previous_followers if x not in followers])
 
 for follower in followers:
+    # create the csv writer
+    writer = csv.writer(f)
     writer.writerow([follower])
 
 # get the end time
