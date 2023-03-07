@@ -35,10 +35,8 @@ if os.path.isfile(username+'.csv'):
         previous_followers.add(row)
     print("Number followers previously =>", len(previous_followers))
 
-    print("Followers losts", [
+    print("Followers difference", [
           x for x in followers if x not in previous_followers])
-    print("Followers wins", [
-          x for x in previous_followers if x not in followers])
 
 # open the file in the write mode
 f = open(username+'.csv', 'w', encoding='UTF8', newline='')
