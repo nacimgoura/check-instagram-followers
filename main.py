@@ -5,11 +5,12 @@ import os
 import csv
 import time
 import instaloader
+from getpass import getpass
 
 print('Enter your account name:')
 username = input()
 print('Enter your account password:')
-password = input()
+password = getpass()
 
 # get the start time
 st = time.time()
@@ -18,7 +19,7 @@ st = time.time()
 bot = instaloader.Instaloader()
 bot.login(user=username, passwd=password)
 
-print("Login successfull!")
+print("Login success!")
 
 # Loading a profile from an Instagram handle
 profile = instaloader.Profile.from_username(bot.context, username)
@@ -35,8 +36,10 @@ if os.path.isfile(username+'.csv'):
         previous_followers.add(row)
     print("Number followers previously =>", len(previous_followers))
 
-    print("Followers difference", [
+    print("New followers", [
           x for x in followers if x not in previous_followers])
+    print("Lost followers", [
+          x for x in previous_followers if x not in followers])
 
 # open the file in the write mode
 f = open(username+'.csv', 'w', encoding='UTF8', newline='')
